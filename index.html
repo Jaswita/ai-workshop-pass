@@ -1,0 +1,1455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Workshop Pass</title>
+<meta name="description" content="Free live workshop: Build Your First AI Project in 60 Minutes. Register, get your pass and invite your batch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: one 1120px column over a cream plaid; text sits on opaque ivory "paper" so the checks never fight the copy.
+   Single light theme by choice: the plaid is the identity. */
+:root {
+  --bg: #F1E6D5;              /* cream base under the checks */
+  --surface: #FFFCF6;         /* Warm Ivory: cards and fields */
+  --paper: rgba(255, 252, 246, 0.9);
+  --sunk: #F6EFE4;
+  --ink: #29241F;             /* Dark Roast: headings */
+  --body: #51483F;            /* Warm Charcoal: paragraphs and labels */
+  --muted: #74685B;
+  --line: #E4D7C4;
+  --primary: #342B26;         /* Espresso: primary buttons */
+  --primary-hover: #514237;
+  --primary-ink: #FFFFFF;
+  --accent: #3F5B46;          /* Forest Olive: active states, highlights, success */
+  --accent-2: #C3A780;        /* tan: second chart series */
+  --accent-ink: #FFFFFF;
+  --accent-soft: #E6ECE3;
+  --ticket-ink: #FBF4E8;
+  --ticket-code: #E2C79B;
+  --gold: #87570F;
+  --gold-soft: #F6E7C8;
+  --wa: #1D7543;
+  --wa-ink: #FFFFFF;
+  --danger: #A3332A;
+  --ok: #3F5B46;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --r: 14px;
+  /* one plaid sett, woven both ways: white pinstripes, wide tan bands, thin roast lines */
+  --sett:
+    transparent 0 14px,
+    rgba(255, 255, 255, 0.6) 14px 20px,
+    transparent 20px 46px,
+    rgba(132, 98, 64, 0.12) 46px 88px,
+    transparent 88px 98px,
+    rgba(100, 74, 50, 0.2) 98px 101px,
+    transparent 101px 128px,
+    rgba(255, 255, 255, 0.45) 128px 131px,
+    transparent 131px 150px,
+    rgba(132, 98, 64, 0.07) 150px 176px,
+    transparent 176px 192px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: repeating-linear-gradient(90deg, var(--sett)), repeating-linear-gradient(0deg, var(--sett));
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--body);
+  font: 400 16px/1.55 var(--font-body);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; margin: 0; text-wrap: balance; color: var(--ink); }
+.paper, .pitch, .intro, .admin-head { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 24px; box-shadow: 0 1px 0 rgba(41, 36, 31, 0.04), 0 10px 30px -18px rgba(41, 36, 31, 0.35); }
+.intro { display: grid; gap: 10px; }
+.card { box-shadow: 0 10px 30px -20px rgba(41, 36, 31, 0.4); }
+h1 { font-size: clamp(2rem, 4.6vw, 3.4rem); font-weight: 800; letter-spacing: -0.025em; }
+h2 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-family: var(--font-body); }
+p { margin: 0; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.eyebrow { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+.lede { font-size: 1.08rem; color: var(--muted); max-width: 58ch; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* header */
+.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.mark { width: 30px; height: 30px; border-radius: 8px; background: var(--primary); color: var(--primary-ink); display: grid; place-items: center; font: 800 0.8rem var(--font-mono); }
+nav { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+nav a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: 0.92rem; padding: 7px 12px; border-radius: 999px; white-space: nowrap; }
+nav a:hover { color: var(--ink); background: var(--sunk); }
+nav a[aria-current="page"] { color: var(--accent-ink); background: var(--accent); }
+
+main { padding-block: 36px 56px; flex: 1 0 auto; width: 100%; }
+.view { display: grid; gap: 28px; }
+
+/* cards, buttons, forms */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; min-width: 0; }
+.btn { appearance: none; border: 1px solid transparent; border-radius: 10px; padding: 11px 18px; font: 600 0.95rem var(--font-body); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: transform .12s ease, background .12s ease; }
+.btn:active { transform: translateY(1px); }
+.btn.primary { background: var(--primary); color: var(--primary-ink); }
+.btn.primary:hover { background: var(--primary-hover); }
+.btn.wa { background: var(--wa); color: var(--wa-ink); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn.ghost:hover { background: var(--sunk); }
+.btn.small { padding: 7px 12px; font-size: 0.85rem; }
+.btn.danger { background: transparent; color: var(--danger); border-color: color-mix(in srgb, var(--danger) 40%, transparent); }
+.btn[disabled] { opacity: .6; cursor: progress; }
+.link-btn { background: none; border: 0; padding: 0; color: var(--muted); font: inherit; font-size: 0.88rem; text-decoration: underline; cursor: pointer; justify-self: start; }
+
+label { display: grid; gap: 6px; font-weight: 600; font-size: 0.9rem; color: var(--body); }
+input, select { width: 100%; font: 400 1rem var(--font-body); color: var(--ink); background: var(--sunk); border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+input:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.err { color: var(--danger); font-size: 0.82rem; font-weight: 500; min-height: 0; }
+.err:empty { display: none; }
+input[aria-invalid="true"] { border-color: var(--danger); background: #FBEFEC; }
+input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 18%, transparent); }
+.hint { font-size: 0.82rem; font-weight: 500; color: var(--accent); }
+.hint:empty { display: none; }
+.hint button { font: inherit; color: inherit; text-decoration: underline; background: none; border: 0; padding: 0; cursor: pointer; }
+.form-alert { border-radius: 10px; padding: 10px 12px; font-size: 0.88rem; font-weight: 500; }
+.form-alert:empty { display: none; }
+.form-alert.bad { background: #FBEFEC; color: var(--danger); border: 1px solid color-mix(in srgb, var(--danger) 30%, transparent); }
+.form-alert.info { background: var(--accent-soft); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); }
+.form-alert a { color: inherit; font-weight: 700; }
+.fine { font-size: 0.84rem; color: var(--muted); }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 520px) { .row2 { grid-template-columns: 1fr; } }
+
+/* register */
+.invite { display: flex; align-items: center; gap: 12px; background: var(--gold-soft); color: var(--ink); border-radius: var(--r); padding: 12px 16px; font-weight: 500; }
+.invite b { color: var(--gold); }
+.reg-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: start; }
+@media (max-width: 880px) { .reg-grid { grid-template-columns: 1fr; gap: 28px; } }
+.pitch { display: grid; gap: 22px; min-width: 0; }
+.hl { color: var(--accent); }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; margin: 0; }
+@media (max-width: 520px) { .facts { grid-template-columns: 1fr; } }
+.facts div { border-top: 2px solid var(--ink); padding-top: 8px; }
+.facts dt { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.facts dd { margin: 2px 0 0; font-weight: 600; }
+.seats { display: grid; gap: 8px; }
+.seats-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; }
+.seats-row strong { font-family: var(--font-display); font-size: 1.6rem; }
+.countdown { font: 600 0.85rem var(--font-mono); color: var(--accent); background: var(--accent-soft); padding: 4px 10px; border-radius: 999px; }
+.meter { height: 10px; background: var(--sunk); border-radius: 999px; overflow: hidden; }
+.meter span { display: block; height: 100%; background: var(--accent); border-radius: 999px; transition: width .6s ease; }
+.form { display: grid; gap: 16px; }
+.form h2 { font-size: 1.5rem; }
+
+/* pass */
+.pass-grid { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 28px; align-items: start; }
+@media (max-width: 880px) { .pass-grid { grid-template-columns: 1fr; } }
+.ticket { background: var(--primary); color: var(--ticket-ink); border-radius: 18px; overflow: hidden; display: grid; box-shadow: 0 18px 40px -22px rgba(41, 36, 31, 0.7); }
+.t-top, .t-bottom { padding: 24px; display: grid; gap: 8px; }
+.t-row { display: flex; justify-content: space-between; align-items: center; }
+.t-label { font: 700 0.72rem var(--font-body); text-transform: uppercase; letter-spacing: 0.12em; opacity: .65; }
+.t-no { font: 700 0.95rem var(--font-mono); opacity: .8; }
+.t-name { font: 800 1.9rem/1.1 var(--font-display); letter-spacing: -0.02em; overflow-wrap: anywhere; }
+.t-meta, .t-when { opacity: .78; font-size: 0.95rem; }
+.t-when { font-weight: 600; opacity: 1; }
+.t-perf { height: 2px; margin-inline: 24px; border-top: 2px dashed color-mix(in srgb, var(--ticket-ink) 30%, transparent); }
+.t-code { font: 700 clamp(1.8rem, 6vw, 2.4rem) var(--font-mono); letter-spacing: 0.06em; color: var(--ticket-code); }
+.linkbox { display: flex; gap: 8px; }
+.linkbox input { background: color-mix(in srgb, var(--ticket-ink) 10%, transparent); color: var(--ticket-ink); border-color: color-mix(in srgb, var(--ticket-ink) 25%, transparent); font: 500 0.82rem var(--font-mono); }
+.linkbox .btn { background: var(--surface); color: var(--ink); }
+.share { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.share .btn.ghost { color: var(--ticket-ink); border-color: color-mix(in srgb, var(--ticket-ink) 30%, transparent); }
+.share .btn.ghost:hover { background: color-mix(in srgb, var(--ticket-ink) 12%, transparent); }
+.share .btn.wa { flex: 1 1 100%; }
+.prog { display: grid; gap: 20px; }
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 520px) { .stat-row { grid-template-columns: 1fr 1fr; } }
+.stat-row > div { background: var(--sunk); border-radius: 12px; padding: 14px; display: grid; gap: 2px; align-content: start; }
+.big { font: 800 2rem/1 var(--font-display); font-variant-numeric: tabular-nums; }
+.cap { font-size: 0.82rem; color: var(--muted); }
+.milestones { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.milestones li { display: grid; grid-template-columns: 84px 1fr auto; gap: 12px; align-items: center; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; }
+.milestones li.done { background: var(--gold-soft); border-color: transparent; }
+.ms-n { font: 700 0.8rem var(--font-mono); color: var(--muted); white-space: nowrap; }
+.milestones li.done .ms-n { color: var(--gold); }
+.ms-t { font-weight: 600; }
+.ms-t small { display: block; font-weight: 400; color: var(--muted); font-size: 0.82rem; }
+.ms-s { font-size: 0.78rem; font-weight: 700; color: var(--muted); white-space: nowrap; }
+.milestones li.done .ms-s { color: var(--gold); }
+.college-line { background: var(--accent-soft); border-radius: 12px; padding: 12px 14px; font-weight: 500; }
+.friends { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.friends li { background: var(--sunk); border-radius: 999px; padding: 5px 12px; font-size: 0.88rem; }
+.friends .empty { background: none; padding: 0; color: var(--muted); }
+.find { max-width: 520px; display: grid; gap: 14px; }
+.find form { display: flex; gap: 8px; }
+@media (max-width: 520px) { .find form { flex-direction: column; } }
+
+/* leaderboard */
+.board-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+@media (max-width: 880px) { .board-grid { grid-template-columns: 1fr; } }
+.rank { list-style: none; margin: 14px 0 0; padding: 0; display: grid; }
+.rank li { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 11px 0; border-top: 1px solid var(--line); }
+.rank li:first-child { border-top: 0; }
+.rank .pos { font: 700 0.9rem var(--font-mono); color: var(--muted); }
+.rank .who { min-width: 0; }
+.rank .who b { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rank .who span { display: block; font-size: 0.84rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rank .score { font: 700 1.05rem var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.rank li.me { background: var(--accent-soft); border-radius: 10px; padding-inline: 8px; margin-inline: -8px; }
+.prize { display: inline-block; font: 700 0.7rem var(--font-body); color: var(--gold); background: var(--gold-soft); border-radius: 999px; padding: 2px 8px; margin-left: 6px; vertical-align: 2px; }
+.cbar { height: 6px; background: var(--sunk); border-radius: 999px; margin-top: 6px; overflow: hidden; }
+.cbar i { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+
+/* organizer */
+.admin-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; }
+.admin-head .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { justify-self: start; display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--gold-soft); color: var(--gold); }
+.chip.live { background: color-mix(in srgb, var(--ok) 14%, transparent); color: var(--ok); }
+.kpis { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 1000px) { .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.kpi .k-l { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.kpi .k-v { font: 800 1.7rem/1.1 var(--font-display); font-variant-numeric: tabular-nums; }
+.kpi .k-s { font-size: 0.8rem; color: var(--muted); }
+.kpi .meter { height: 6px; margin-top: 4px; }
+.admin-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.admin-grid .span2 { grid-column: span 2; }
+.admin-grid .span3 { grid-column: 1 / -1; }
+@media (max-width: 1000px) { .admin-grid { grid-template-columns: 1fr; } .admin-grid .span2 { grid-column: auto; } }
+.sub { color: var(--muted); font-size: 0.86rem; margin-top: 4px; }
+.chart { position: relative; margin-top: 14px; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.82rem; color: var(--muted); margin-top: 10px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--surface); border-radius: 8px; padding: 8px 10px; font-size: 0.8rem; line-height: 1.4; white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); z-index: 5; }
+.hbars { display: grid; gap: 12px; margin-top: 14px; }
+.hbar { display: grid; gap: 5px; }
+.hbar-top { display: flex; justify-content: space-between; gap: 10px; font-size: 0.9rem; }
+.hbar-top b { font-variant-numeric: tabular-nums; }
+.hbar-top span { color: var(--muted); font-variant-numeric: tabular-nums; }
+.hbar .track { height: 8px; background: var(--sunk); border-radius: 999px; overflow: hidden; }
+.hbar .track i { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+.funnel { display: grid; gap: 10px; margin-top: 14px; }
+.funnel div { display: flex; justify-content: space-between; gap: 10px; padding: 10px 12px; background: var(--sunk); border-radius: 10px; }
+.funnel b { font-variant-numeric: tabular-nums; }
+.funnel .conv { background: var(--accent-soft); font-weight: 600; }
+.budget { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.9rem; }
+.tablewrap { overflow-x: auto; margin-top: 12px; }
+table.data { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 560px; }
+table.data th { text-align: left; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+table.data td { padding: 9px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+table.data tr:last-child td { border-bottom: 0; }
+table.data td.r, table.data th.r { text-align: right; }
+.budget td { padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.budget td.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; padding-left: 12px; }
+.budget tr.total td { border-bottom: 0; font-weight: 700; }
+.src { display: inline-block; font-size: 0.76rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--sunk); color: var(--muted); white-space: nowrap; }
+.src.referral { background: var(--accent-soft); color: var(--accent); }
+
+footer { border-top: 1px solid var(--line); background: var(--surface); }
+footer .wrap { padding-block: 20px 28px; color: var(--muted); font-size: 0.84rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--surface); padding: 10px 16px; border-radius: 10px; font-weight: 600; font-size: 0.92rem; z-index: 50; max-width: calc(100% - 32px); }
+
+/* quotes */
+.quote-band { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px 22px; align-items: center; background: var(--primary); color: var(--ticket-ink); border-radius: 18px; padding: 26px 30px; box-shadow: 0 18px 40px -24px rgba(41, 36, 31, 0.7); }
+.q-mark { font: 800 5.5rem/0.6 var(--font-display); color: var(--ticket-code); align-self: start; padding-top: 18px; }
+.q-body { display: grid; gap: 10px; min-height: 5.4em; align-content: center; transition: opacity .35s ease; }
+.q-body.fading { opacity: 0; }
+.quote-band blockquote { margin: 0; font: 600 clamp(1.15rem, 2.3vw, 1.5rem)/1.35 var(--font-display); letter-spacing: -0.01em; text-wrap: balance; }
+.quote-band figcaption { font-size: 0.88rem; color: color-mix(in srgb, var(--ticket-ink) 70%, transparent); }
+.q-dots { display: flex; gap: 8px; }
+.q-dots button { width: 10px; height: 10px; padding: 0; border-radius: 999px; border: 0; background: color-mix(in srgb, var(--ticket-ink) 30%, transparent); cursor: pointer; transition: width .2s ease; }
+.q-dots button[aria-selected="true"] { width: 26px; background: var(--ticket-code); }
+@media (max-width: 640px) {
+  .quote-band { grid-template-columns: 1fr; padding: 22px; }
+  .q-mark { font-size: 4rem; padding-top: 10px; }
+}
+
+/* agenda */
+.agenda { display: grid; gap: 20px; }
+.agenda-head { display: grid; gap: 6px; }
+.agenda h2 { font-size: 1.6rem; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; counter-reset: step; }
+@media (max-width: 880px) { .steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+.steps li { display: grid; gap: 4px; align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; counter-increment: step; position: relative; }
+.steps li::before { content: counter(step); position: absolute; top: 14px; right: 14px; width: 26px; height: 26px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font: 700 0.8rem var(--font-mono); }
+.s-time { font: 700 0.78rem var(--font-mono); color: var(--accent); }
+.steps b { font: 700 1.1rem var(--font-display); color: var(--ink); }
+.steps li > span:last-child { font-size: 0.92rem; }
+.agenda-foot { font-weight: 600; color: var(--ink); border-left: 3px solid var(--accent); padding-left: 12px; }
+.nudge { font-weight: 600; color: var(--accent); background: var(--accent-soft); border-radius: 10px; padding: 10px 14px; justify-self: start; max-width: 70ch; }
+.nudge:empty { display: none; }
+#confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 60; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#register"><span class="mark">AI</span><span>AI Workshop Pass</span></a>
+    <nav aria-label="Sections">
+      <a href="#register" data-view="register">Register</a>
+      <a href="#pass" data-view="pass">My pass</a>
+      <a href="#leaderboard" data-view="leaderboard">Leaderboard</a>
+      <a href="#organizer" data-view="organizer">Organizer</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- REGISTER -->
+  <section id="view-register" class="view" hidden>
+    <div class="invite" id="invite" hidden></div>
+    <div class="reg-grid">
+      <div class="pitch">
+        <p class="eyebrow">Free · Live online · 60 minutes</p>
+        <h1>Build your first <span class="hl">AI project</span> in 60 minutes</h1>
+        <p class="lede">A live, hands-on session for final-year engineering students. Code along, ship a working AI app, and leave with a GitHub repo you can put on your resume before placement season.</p>
+        <dl class="facts">
+          <div><dt>When</dt><dd id="when"></dd></div>
+          <div><dt>You build</dt><dd>An AI resume screener using Python and a free LLM API</dd></div>
+          <div><dt>You leave with</dt><dd>A deployed project link, GitHub repo and certificate</dd></div>
+          <div><dt>You need</dt><dd>A laptop and a browser. No AI experience required.</dd></div>
+        </dl>
+        <div class="seats">
+          <div class="seats-row">
+            <span><strong class="num" id="seat-count">0</strong> of 500 seats claimed</span>
+            <span class="countdown" id="countdown"></span>
+          </div>
+          <div class="meter"><span id="seat-bar" style="width:0"></span></div>
+          <p class="fine" id="seats-note"></p>
+        </div>
+      </div>
+
+      <form id="reg-form" class="card form" novalidate>
+        <h2>Claim your free seat</h2>
+        <p class="form-alert info" id="have-pass"></p>
+        <label for="f-name">Full name
+          <input id="f-name" name="name" aria-describedby="e-name" autocomplete="name" placeholder="Priya Sharma" maxlength="60">
+          <small class="err" id="e-name" aria-live="polite"></small>
+        </label>
+        <div class="row2">
+          <label for="f-phone">WhatsApp number
+            <input id="f-phone" name="phone" aria-describedby="e-phone" inputmode="numeric" autocomplete="tel-national" placeholder="98765 43210" maxlength="16">
+            <small class="err" id="e-phone" aria-live="polite"></small>
+          </label>
+          <label for="f-email">Email
+            <input id="f-email" name="email" aria-describedby="e-email h-email" type="email" autocomplete="email" placeholder="priya@gmail.com" maxlength="80">
+            <small class="err" id="e-email" aria-live="polite"></small>
+            <small class="hint" id="h-email"></small>
+          </label>
+        </div>
+        <label for="f-college">College
+          <input id="f-college" name="college" aria-describedby="e-college" list="college-list" placeholder="Start typing your college" maxlength="80">
+          <datalist id="college-list"></datalist>
+          <small class="err" id="e-college" aria-live="polite"></small>
+        </label>
+        <div class="row2">
+          <label for="f-branch">Branch
+            <select id="f-branch" name="branch">
+              <option>CSE</option><option>AI &amp; DS</option><option>IT</option><option>ECE</option><option>EEE</option><option>Mechanical</option><option>Civil</option><option>Other</option>
+            </select>
+          </label>
+          <label for="f-year">Year
+            <select id="f-year" name="year">
+              <option>Final year (2027 batch)</option><option>Pre-final year (2028 batch)</option><option>Graduated</option>
+            </select>
+          </label>
+        </div>
+        <label for="f-source" id="source-wrap">How did you hear about this?
+          <select id="f-source" name="source">
+            <option value="whatsapp">WhatsApp group</option>
+            <option value="club">College club or faculty</option>
+            <option value="ambassador">Campus ambassador</option>
+            <option value="linkedin">LinkedIn</option>
+            <option value="instagram">Instagram</option>
+            <option value="email">Email</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+        <p class="form-alert bad" id="form-alert" role="alert"></p>
+        <button class="btn primary" type="submit" id="reg-btn">Get my workshop pass</button>
+        <p class="fine">We send the joining link and reminders on WhatsApp. You can leave the list anytime.</p>
+        <p class="fine"><a href="#pass">Already registered? Find your pass</a></p>
+      </form>
+    </div>
+
+    <figure class="quote-band" id="quote-band" aria-live="polite">
+      <span class="q-mark" aria-hidden="true">“</span>
+      <div class="q-body">
+        <blockquote id="q-text"></blockquote>
+        <figcaption id="q-cite"></figcaption>
+      </div>
+      <div class="q-dots" id="q-dots" role="tablist" aria-label="Choose a quote"></div>
+    </figure>
+
+    <section class="paper agenda" aria-labelledby="agenda-h">
+      <div class="agenda-head">
+        <p class="eyebrow">The plan for the hour</p>
+        <h2 id="agenda-h">How your 60 minutes go</h2>
+      </div>
+      <ol class="steps">
+        <li><span class="s-time">0–10 min</span><b>Set up</b><span>Open a free notebook in your browser and get an API key. Nothing to install.</span></li>
+        <li><span class="s-time">10–35 min</span><b>Build</b><span>Write an AI resume screener that scores a resume against a real job description.</span></li>
+        <li><span class="s-time">35–50 min</span><b>Deploy</b><span>Put it online with a link you can send to anyone, recruiters included.</span></li>
+        <li><span class="s-time">50–60 min</span><b>Show it</b><span>Push to GitHub and add it to your resume and LinkedIn before you log off.</span></li>
+      </ol>
+      <p class="agenda-foot">You don't need to be the best coder in your class. You need to be the one who started.</p>
+    </section>
+  </section>
+
+  <!-- PASS -->
+  <section id="view-pass" class="view" hidden>
+    <div id="pass-find" class="card find" hidden>
+      <h2>Find your pass</h2>
+      <p class="fine">Enter the WhatsApp number or email you registered with.</p>
+      <form id="find-form" novalidate>
+        <input id="find-q" placeholder="98765 43210 or you@gmail.com" maxlength="80" aria-label="WhatsApp number or email">
+        <button class="btn primary" type="submit">Show my pass</button>
+      </form>
+      <small class="err" id="e-find"></small>
+      <p class="fine">Not registered yet? <a href="#register">Claim a free seat</a></p>
+    </div>
+
+    <div id="pass-body" class="view" hidden>
+      <div class="intro">
+        <p class="eyebrow" id="pass-greet">You're in</p>
+        <h1>Now bring your batch along</h1>
+        <p class="lede">Every friend who registers with your link moves you up the leaderboard. The top 5 referrers when registrations close each win a ₹200 Amazon voucher.</p>
+        <p class="nudge" id="pass-nudge"></p>
+      </div>
+      <div class="pass-grid">
+        <article class="ticket" aria-label="Workshop pass">
+          <div class="t-top">
+            <div class="t-row"><span class="t-label">Live workshop pass</span><span class="t-no" id="t-no"></span></div>
+            <p class="t-name" id="t-name"></p>
+            <p class="t-meta" id="t-meta"></p>
+            <p class="t-when" id="t-when"></p>
+          </div>
+          <div class="t-perf" aria-hidden="true"></div>
+          <div class="t-bottom">
+            <span class="t-label">Your invite code</span>
+            <p class="t-code" id="t-code"></p>
+            <div class="linkbox">
+              <input id="t-link" readonly aria-label="Your invite link">
+              <button class="btn small" type="button" id="copy-link">Copy</button>
+            </div>
+            <div class="share">
+              <a class="btn wa" id="share-wa" target="_blank" rel="noopener">Share on WhatsApp</a>
+              <a class="btn ghost small" id="share-li" target="_blank" rel="noopener">Post on LinkedIn</a>
+              <button class="btn ghost small" type="button" id="copy-msg">Copy invite message</button>
+            </div>
+          </div>
+        </article>
+
+        <div class="card prog">
+          <div class="stat-row">
+            <div><span class="big" id="p-refs">0</span><span class="cap">friends joined with your code</span></div>
+            <div><span class="big" id="p-rank">–</span><span class="cap" id="p-rank-cap">rank among referrers</span></div>
+            <div><span class="big" id="p-clicks">0</span><span class="cap">times your link was opened</span></div>
+          </div>
+          <h3>Rewards you unlock</h3>
+          <ol class="milestones" id="milestones"></ol>
+          <p class="college-line" id="p-college"></p>
+          <h3>Joined with your code</h3>
+          <ul class="friends" id="p-friends"></ul>
+          <button class="link-btn" type="button" id="not-me">Not you? Open a different pass</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <section id="view-leaderboard" class="view" hidden>
+    <div class="intro">
+      <p class="eyebrow">Updates live</p>
+      <h1>Leaderboard</h1>
+      <p class="lede">The top 5 referrers at close win ₹200 vouchers. The college with the most registrations gets a dedicated follow-up project session.</p>
+      <p class="nudge">Every name on this board started with one message to one friend.</p>
+    </div>
+    <div class="board-grid">
+      <div class="card"><h2>Top referrers</h2><ol class="rank" id="b-people"></ol></div>
+      <div class="card"><h2>Colleges</h2><ol class="rank" id="b-colleges"></ol></div>
+    </div>
+  </section>
+
+  <!-- ORGANIZER -->
+  <section id="view-organizer" class="view" hidden>
+    <div id="gate" class="card find">
+      <h2>Organizer view</h2>
+      <p class="fine">Enter the organizer PIN to see the campaign dashboard. Demo PIN: <code>growth500</code></p>
+      <form id="gate-form" novalidate>
+        <input id="gate-pin" type="password" autocomplete="off" aria-label="Organizer PIN">
+        <button class="btn primary" type="submit">Open dashboard</button>
+      </form>
+      <small class="err" id="e-gate"></small>
+    </div>
+
+    <div id="admin" class="view" hidden>
+      <div class="admin-head">
+        <div style="display:grid;gap:8px">
+          <span id="mode-chip" class="chip"></span>
+          <h1 style="font-size:clamp(1.8rem,3.6vw,2.6rem)">Campaign control room</h1>
+          <p class="fine" id="admin-sub"></p>
+        </div>
+        <div class="actions">
+          <button class="btn ghost small" type="button" id="a-refresh">Refresh</button>
+          <button class="btn ghost small" type="button" id="a-export">Export CSV</button>
+          <button class="btn ghost small" type="button" id="a-sim">Load simulated campaign</button>
+          <button class="btn danger small" type="button" id="a-reset">Erase all data</button>
+        </div>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="admin-grid">
+        <div class="card span2">
+          <h2>Registrations per day</h2>
+          <p class="sub">Dashed line: 72 a day is the pace that reaches 500 in 7 days.</p>
+          <div class="chart" id="c-daily"></div>
+          <div class="legend"><span><i style="background:var(--accent)"></i>Via a friend's link</span><span><i style="background:var(--accent-2)"></i>All other channels</span></div>
+        </div>
+        <div class="card"><h2>Where registrations come from</h2><div class="hbars" id="c-channels"></div></div>
+        <div class="card"><h2>Referral funnel</h2><p class="sub">From pass holder to new registration</p><div class="funnel" id="c-funnel"></div></div>
+        <div class="card"><h2>Budget: ₹2,000</h2><table class="budget" id="c-budget"></table></div>
+        <div class="card"><h2>Reward unlocks</h2><p class="sub">Pass holders at each milestone</p><div class="hbars" id="c-milestones"></div></div>
+        <div class="card span3"><h2>Top colleges</h2><div class="tablewrap"><table class="data" id="t-colleges"></table></div></div>
+        <div class="card span3"><h2>Latest registrations</h2><div class="tablewrap"><table class="data" id="t-recent"></table></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Prototype built for the NxtWave Growth Challenge.</span>
+    <span id="foot-mode"></span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- config ----------
+  const CONFIG = {
+    target: 500,
+    days: 7,
+    adminPin: "growth500",
+    // Paste your Google Apps Script web-app URL here to go live (see README.md). Empty = demo mode in this browser.
+    sheetsUrl: "",
+  };
+
+  const COLLEGES = [
+    "CBIT Hyderabad", "VNR VJIET", "GRIET Hyderabad", "Vasavi College of Engineering", "CVR College of Engineering",
+    "MLR Institute of Technology", "Anurag University", "Vardhaman College of Engineering", "SNIST Hyderabad",
+    "KL University", "VIT Vellore", "SRM IST Chennai", "GITAM Visakhapatnam", "JNTU Kakinada", "Amrita Coimbatore",
+    "PSG Tech", "RV College of Engineering", "BMS College of Engineering",
+  ];
+  const CHANNELS = {
+    referral: "Friend's invite link",
+    whatsapp: "WhatsApp groups",
+    ambassador: "Campus ambassadors",
+    club: "College clubs & faculty",
+    linkedin: "LinkedIn",
+    instagram: "Instagram",
+    email: "Email",
+    other: "Other",
+  };
+  const SRC_ALIAS = { wa: "whatsapp", li: "linkedin", ig: "instagram", em: "email", amb: "ambassador" };
+  const MILESTONES = [
+    { n: 1, title: "Priority Q&A slot", note: "Your question is answered live, first" },
+    { n: 3, title: "AI Project Starter Pack", note: "5 resume-ready project templates with datasets" },
+    { n: 5, title: "AI Campus Champion certificate", note: "Verified, shareable on LinkedIn" },
+    { n: 10, title: "1:1 project and resume review", note: "20 minutes with an NxtWave mentor" },
+  ];
+
+  // Attributed lines are well-documented quotes; the rest are written for this workshop and labelled that way.
+  const QUOTES = [
+    { text: "Placements don't ask what you watched. They ask what you built.", cite: "A note from the workshop team" },
+    { text: "The best way to predict the future is to invent it.", cite: "Alan Kay, computer scientist" },
+    { text: "Your first project won't be perfect. It will be yours, and that is what interviewers want to hear about.", cite: "A note from the workshop team" },
+    { text: "Talk is cheap. Show me the code.", cite: "Linus Torvalds, creator of Linux" },
+    { text: "Arise, awake, and stop not till the goal is reached.", cite: "Swami Vivekananda" },
+    { text: "Every developer you look up to once sat where you are, about to build their first thing.", cite: "A note from the workshop team" },
+  ];
+
+  // ---------- small helpers ----------
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const store = (kind) => ({
+    get(k) { try { return window[kind].getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { window[kind].setItem(k, v); } catch (e) {} },
+    del(k) { try { window[kind].removeItem(k); } catch (e) {} },
+  });
+  const local = store("localStorage");
+  const session = store("sessionStorage");
+  const fmt = (n) => Number(n).toLocaleString("en-IN");
+  const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
+  const shortName = (name) => {
+    const parts = String(name).trim().split(/\s+/);
+    return parts.length > 1 ? parts[0] + " " + parts[parts.length - 1][0].toUpperCase() + "." : parts[0];
+  };
+  const cleanPhone = (p) => String(p || "").replace(/\D/g, "").replace(/^(91|0)(?=\d{10}$)/, "");
+  const DAY = 864e5;
+  const startOfDay = (t) => { const d = new Date(t); d.setHours(0, 0, 0, 0); return d.getTime(); };
+  const timeAgo = (iso) => {
+    const s = Math.max(0, (Date.now() - new Date(iso).getTime()) / 1000);
+    if (s < 60) return "just now";
+    if (s < 3600) return Math.floor(s / 60) + " min ago";
+    if (s < 86400) return Math.floor(s / 3600) + " h ago";
+    return Math.floor(s / 86400) + " d ago";
+  };
+
+  function toast(msg) {
+    const t = $("#toast");
+    t.textContent = msg;
+    t.hidden = false;
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => { t.hidden = true; }, 2600);
+  }
+
+  async function copyText(text, okMsg, fallbackInput) {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast(okMsg);
+    } catch (e) {
+      if (fallbackInput) { fallbackInput.focus(); fallbackInput.select(); }
+      toast("Press Ctrl+C to copy");
+    }
+  }
+
+  // Workshop: the Sunday after the 7-day campaign window, 11:00 AM
+  function workshopDate() {
+    const d = new Date();
+    d.setHours(11, 0, 0, 0);
+    const add = ((7 - d.getDay()) % 7) || 7;
+    d.setDate(d.getDate() + add);
+    return d;
+  }
+  const WORKSHOP = workshopDate();
+  const WHEN_TEXT = WORKSHOP.toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "short" }) + ", 11:00 AM IST";
+
+  // ---------- referral code ----------
+  function makeCode(name, taken, rnd) {
+    const r = rnd || Math.random;
+    const stem = (String(name).replace(/[^a-z]/gi, "").slice(0, 5).toUpperCase()) || "AI";
+    let code;
+    do { code = stem + Math.floor(100 + r() * 900); } while (taken.has(code));
+    return code;
+  }
+
+  // ---------- simulated 7-day campaign (demo mode) ----------
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function simulate() {
+    const rnd = mulberry32(20261101);
+    const pick = (a) => a[Math.floor(rnd() * a.length)];
+    const wpick = (items, w) => {
+      let sum = 0; for (const x of w) sum += x;
+      let r = rnd() * sum;
+      for (let i = 0; i < items.length; i++) { r -= w[i]; if (r <= 0) return items[i]; }
+      return items[items.length - 1];
+    };
+    const FIRST = ["Aarav", "Aditya", "Akhil", "Ananya", "Anjali", "Arjun", "Bhavana", "Charan", "Deepika", "Divya", "Gautam", "Harsha", "Ishita", "Karthik", "Keerthi", "Lakshmi", "Manish", "Meghana", "Nikhil", "Nithya", "Pooja", "Pranav", "Priya", "Rahul", "Rohit", "Sahithi", "Sai", "Sandeep", "Shreya", "Sneha", "Srinivas", "Swathi", "Tejas", "Varun", "Vamsi", "Vishnu", "Yamini", "Rakesh", "Kavya", "Harini"];
+    const LAST = ["Reddy", "Sharma", "Rao", "Iyer", "Naidu", "Kumar", "Varma", "Patel", "Nair", "Gupta", "Krishnan", "Menon", "Das", "Chowdary", "Joshi", "Singh", "Pillai", "Shetty", "Mehta", "Bhat"];
+    const BRANCHES = ["CSE", "CSE", "CSE", "CSE", "AI & DS", "AI & DS", "IT", "IT", "ECE", "ECE", "ECE", "EEE", "Mechanical"];
+    const COLLEGE_W = COLLEGES.map((_, i) => (i < 10 ? 3 : 1));
+    // Day 1 is ambassador-led; referrals compound as more people hold a pass.
+    const PER_DAY = [42, 54, 62, 70, 78, 86, 96];
+    const P_REF = [0.05, 0.2, 0.3, 0.38, 0.45, 0.5, 0.55];
+    const today = startOfDay(Date.now());
+    const now = Date.now();
+    const regs = [];
+    const codes = new Set();
+    const phones = new Set();
+
+    for (let d = 0; d < 7; d++) {
+      const base = today - (6 - d) * DAY;
+      const times = [];
+      for (let k = 0; k < PER_DAY[d]; k++) {
+        const h = rnd() < 0.6 ? 17 + rnd() * 6.9 : 8 + rnd() * 9;
+        let t = base + h * 36e5;
+        if (d === 6) t = base + (h / 24) * (now - base); // keep today's rows in the past
+        times.push(t);
+      }
+      times.sort((a, b) => a - b);
+      times.forEach((t, k) => {
+        const first = pick(FIRST), last = pick(LAST);
+        let source, referredBy = null, college;
+        if (d === 0 && k < 30) {
+          source = "ambassador";
+          college = COLLEGES[k % 15];
+        } else {
+          const prior = regs.filter((r) => r._t < t);
+          if (prior.length && rnd() < P_REF[d]) {
+            const ref = wpick(prior, prior.map((r) => r._w));
+            source = "referral";
+            referredBy = ref.code;
+            college = rnd() < 0.8 ? ref.college : wpick(COLLEGES, COLLEGE_W);
+          } else {
+            source = wpick(["whatsapp", "club", "linkedin", "email", "instagram"], [45, 25, 12, 10, 8]);
+            college = wpick(COLLEGES, COLLEGE_W);
+          }
+        }
+        let phone;
+        do { phone = String(6 + Math.floor(rnd() * 4)) + String(Math.floor(rnd() * 1e9)).padStart(9, "0"); } while (phones.has(phone));
+        phones.add(phone);
+        const code = makeCode(first, codes, rnd);
+        codes.add(code);
+        regs.push({
+          name: first + " " + last,
+          phone,
+          email: (first + "." + last + Math.floor(rnd() * 90 + 10) + "@gmail.com").toLowerCase(),
+          college,
+          branch: pick(BRANCHES),
+          year: rnd() < 0.9 ? "Final year (2027 batch)" : "Pre-final year (2028 batch)",
+          code,
+          referredBy,
+          source,
+          createdAt: new Date(t).toISOString(),
+          _t: t,
+          _w: source === "ambassador" ? 7 : rnd() < 0.22 ? 1.5 + rnd() * 4 : 0.12,
+        });
+      });
+    }
+
+    const refCount = {};
+    regs.forEach((r) => { if (r.referredBy) refCount[r.referredBy] = (refCount[r.referredBy] || 0) + 1; });
+    const clicks = {};
+    regs.forEach((r) => {
+      const n = refCount[r.code] || 0;
+      const c = n ? n + Math.round(n * (1.1 + rnd() * 1.9)) : rnd() < 0.18 ? 1 + Math.floor(rnd() * 3) : 0;
+      if (c) clicks[r.code] = c;
+      delete r._t; delete r._w;
+    });
+    return { regs, clicks, demo: true };
+  }
+
+  // ---------- data layer: browser storage (demo) or Google Sheets (live) ----------
+  const pub = (r) => ({ name: r.name, college: r.college, branch: r.branch, year: r.year, code: r.code, referredBy: r.referredBy || null, source: r.source, createdAt: r.createdAt });
+
+  const LocalStore = {
+    live: false,
+    key: "aiw-referral-v1",
+    mem: null,
+    data() {
+      if (!this.mem) {
+        let saved = null;
+        try { saved = JSON.parse(local.get(this.key)); } catch (e) {}
+        this.mem = saved && Array.isArray(saved.regs) ? saved : simulate();
+        if (!saved) this.save();
+      }
+      return this.mem;
+    },
+    save() { local.set(this.key, JSON.stringify(this.mem)); },
+    async list() { const d = this.data(); return { regs: d.regs.map(pub), clicks: { ...d.clicks }, demo: !!d.demo }; },
+    async register(f) {
+      const d = this.data();
+      const byPhone = d.regs.find((r) => r.phone === f.phone);
+      const byEmail = d.regs.find((r) => r.email.toLowerCase() === f.email.toLowerCase());
+      // number and email already belong to two different people: refuse instead of guessing whose pass to show
+      if (byPhone && byEmail && byPhone !== byEmail) return { error: "conflict" };
+      const dup = byPhone || byEmail;
+      if (dup) return { duplicate: true, reg: pub(dup), match: byPhone ? "phone" : "email" };
+      const codes = new Set(d.regs.map((r) => r.code));
+      const referredBy = f.referredBy && codes.has(f.referredBy) ? f.referredBy : null;
+      const reg = { ...f, referredBy, source: referredBy ? "referral" : f.source, code: makeCode(f.name, codes), createdAt: new Date().toISOString() };
+      d.regs.push(reg);
+      this.save();
+      return { reg: pub(reg) };
+    },
+    async lookup(q) {
+      const d = this.data();
+      const phone = cleanPhone(q), email = String(q).trim().toLowerCase();
+      const r = d.regs.find((x) => (phone.length === 10 && x.phone === phone) || x.email.toLowerCase() === email || x.code === email.toUpperCase());
+      return r ? pub(r) : null;
+    },
+    async click(code) { const d = this.data(); d.clicks[code] = (d.clicks[code] || 0) + 1; this.save(); },
+    async seed() { this.mem = simulate(); this.save(); },
+    async reset() { this.mem = { regs: [], clicks: {}, demo: false }; this.save(); },
+    async exportRows() { return this.data().regs; },
+  };
+
+  const SheetStore = {
+    live: true,
+    async get(params) {
+      const res = await fetch(CONFIG.sheetsUrl + "?" + new URLSearchParams(params));
+      if (!res.ok) throw new Error("Sheet returned " + res.status);
+      return res.json();
+    },
+    async list() { const d = await this.get({ action: "list" }); return { regs: d.regs || [], clicks: d.clicks || {}, demo: false }; },
+    async register(f) {
+      // text/plain body keeps this a "simple" request, so Apps Script needs no CORS preflight
+      const res = await fetch(CONFIG.sheetsUrl, { method: "POST", body: JSON.stringify({ action: "register", ...f }) });
+      return res.json();
+    },
+    async lookup(q) { const d = await this.get({ action: "lookup", q }); return d.reg || null; },
+    async click(code) { await this.get({ action: "click", code }); },
+    async exportRows() { return (await this.list()).regs; },
+  };
+
+  const DB = CONFIG.sheetsUrl ? SheetStore : LocalStore;
+
+  // ---------- state + derived numbers ----------
+  let state = { regs: [], clicks: {}, demo: false };
+  let D = null;
+
+  function derive() {
+    const sorted = [...state.regs].sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+    const byCode = new Map();
+    sorted.forEach((r, i) => { r.passNo = i + 1; byCode.set(r.code, r); });
+    const refCount = {}, refList = {};
+    sorted.forEach((r) => {
+      if (r.referredBy && byCode.has(r.referredBy)) {
+        refCount[r.referredBy] = (refCount[r.referredBy] || 0) + 1;
+        (refList[r.referredBy] = refList[r.referredBy] || []).push(r);
+      }
+    });
+    const leaders = sorted.filter((r) => refCount[r.code])
+      .sort((a, b) => refCount[b.code] - refCount[a.code] || a.createdAt.localeCompare(b.createdAt));
+    const rank = {};
+    leaders.forEach((r, i) => { rank[r.code] = i + 1; });
+
+    const cmap = new Map();
+    sorted.forEach((r) => {
+      const c = cmap.get(r.college) || { name: r.college, count: 0, viaRef: 0, top: null };
+      c.count++;
+      if (r.source === "referral") c.viaRef++;
+      if ((refCount[r.code] || 0) > 0 && (!c.top || refCount[r.code] > refCount[c.top.code])) c.top = r;
+      cmap.set(r.college, c);
+    });
+    const colleges = [...cmap.values()].sort((a, b) => b.count - a.count);
+
+    const channels = {};
+    sorted.forEach((r) => { const k = CHANNELS[r.source] ? r.source : "other"; channels[k] = (channels[k] || 0) + 1; });
+
+    const end = startOfDay(Math.max(Date.now(), sorted.length ? new Date(sorted[sorted.length - 1].createdAt).getTime() : 0));
+    const days = [];
+    for (let i = CONFIG.days - 1; i >= 0; i--) days.push({ t: end - i * DAY, ref: 0, other: 0 });
+    sorted.forEach((r) => {
+      const t = startOfDay(r.createdAt);
+      const day = days.find((d) => d.t === t);
+      if (day) r.source === "referral" ? day.ref++ : day.other++;
+    });
+
+    const totalClicks = Object.values(state.clicks).reduce((a, b) => a + b, 0);
+    const viaRef = channels.referral || 0;
+    return { sorted, byCode, refCount, refList, leaders, rank, colleges, channels, days, totalClicks, viaRef, total: sorted.length };
+  }
+
+  async function load() {
+    try {
+      state = await DB.list();
+    } catch (e) {
+      toast("Could not reach the registration sheet. Showing the last data we had.");
+    }
+    D = derive();
+  }
+
+  // ---------- routing ----------
+  const VIEWS = ["register", "pass", "leaderboard", "organizer"];
+  function currentView() {
+    const h = location.hash.slice(1);
+    return VIEWS.includes(h) ? h : "register";
+  }
+  function show() {
+    const v = currentView();
+    VIEWS.forEach((name) => { $("#view-" + name).hidden = name !== v; });
+    document.querySelectorAll("nav a").forEach((a) => {
+      if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    render[v]();
+  }
+
+  // ---------- incoming invite (?ref=CODE&src=wa, or #ref-CODE) ----------
+  function readInvite() {
+    const q = new URLSearchParams(location.search);
+    let ref = (q.get("ref") || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+    const hash = location.hash.slice(1);
+    if (!ref && hash.toLowerCase().startsWith("ref-")) {
+      ref = hash.slice(4).toUpperCase().replace(/[^A-Z0-9]/g, "");
+      history.replaceState(null, "", location.pathname + location.search + "#register");
+    }
+    if (ref) session.set("aiw-ref", ref);
+    const src = (q.get("src") || q.get("utm_source") || "").toLowerCase();
+    if (src) session.set("aiw-src", SRC_ALIAS[src] || src);
+  }
+
+  async function trackInviteClick() {
+    const ref = session.get("aiw-ref");
+    if (!ref || ref === myCode() || session.get("aiw-clicked-" + ref) || !D.byCode.has(ref)) return;
+    session.set("aiw-clicked-" + ref, "1");
+    try { await DB.click(ref); state.clicks[ref] = (state.clicks[ref] || 0) + 1; D = derive(); } catch (e) {}
+  }
+
+  // ---------- views ----------
+  const render = {};
+
+  render.register = function () {
+    $("#when").textContent = WHEN_TEXT;
+    const n = D.total;
+    const left = Math.max(0, CONFIG.target - n);
+    $("#seat-count").textContent = fmt(n);
+    $("#seat-bar").style.width = Math.min(100, pct(n, CONFIG.target)) + "%";
+    $("#seats-note").textContent = left
+      ? fmt(left) + " seats left. Registrations close when the 500 are taken."
+      : "All 500 seats are claimed. New registrations join the waitlist and get the recording.";
+    const ms = WORKSHOP.getTime() - Date.now();
+    const dd = Math.floor(ms / DAY), hh = Math.floor((ms % DAY) / 36e5);
+    $("#countdown").textContent = ms > 0 ? "Starts in " + dd + "d " + hh + "h" : "Live now";
+
+    const ref = session.get("aiw-ref");
+    const inviter = ref && D.byCode.get(ref);
+    const inv = $("#invite");
+    const mine = myCode() && D.byCode.get(myCode());
+    $("#have-pass").innerHTML = mine
+      ? "You're already registered as <b>" + esc(mine.name) + "</b>. <a href=\"#pass\">Open my pass</a>. Registering a friend instead? Fill the form for them."
+      : "";
+    if (inviter && ref === myCode()) {
+      inv.hidden = false;
+      inv.innerHTML = "<span>This is <b>your own</b> invite link. Send it to friends; opening it yourself doesn't count.</span>";
+      $("#source-wrap").hidden = false;
+    } else if (inviter) {
+      inv.hidden = false;
+      inv.innerHTML = "<span><b>" + esc(shortName(inviter.name)) + "</b> from " + esc(inviter.college) + " saved you a seat. Register below and you both move up the leaderboard.</span>";
+      $("#source-wrap").hidden = true;
+      if (!$("#f-college").value) $("#f-college").value = inviter.college;
+    } else {
+      inv.hidden = true;
+      $("#source-wrap").hidden = false;
+      const src = session.get("aiw-src");
+      if (src && CHANNELS[src] && src !== "referral") $("#f-source").value = src;
+    }
+  };
+
+  function myCode() { return local.get("aiw-my-code"); }
+
+  render.pass = function () {
+    const code = myCode();
+    const me = code && D.byCode.get(code);
+    $("#pass-find").hidden = !!me;
+    $("#pass-body").hidden = !me;
+    if (!me) return;
+
+    const refs = D.refCount[me.code] || 0;
+    const link = location.origin + location.pathname + "?ref=" + me.code + "&src=wa";
+    const msg = "I just grabbed a free seat for NxtWave's live workshop \"Build Your First AI Project in 60 Minutes\" on " + WHEN_TEXT +
+      ". You build and deploy a real AI project you can put on your resume before placements. It's free and only 500 seats. Register with my link: " + link;
+
+    $("#pass-greet").textContent = "You're in, " + me.name.split(" ")[0];
+    $("#t-no").textContent = "#" + String(me.passNo).padStart(4, "0");
+    $("#t-name").textContent = me.name;
+    $("#t-meta").textContent = me.college + " · " + me.branch;
+    $("#t-when").textContent = WHEN_TEXT;
+    $("#t-code").textContent = me.code;
+    $("#t-link").value = link;
+    $("#share-wa").href = "https://wa.me/?text=" + encodeURIComponent(msg);
+    $("#share-li").href = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(link);
+    $("#copy-msg").onclick = () => copyText(msg, "Invite message copied");
+    $("#copy-link").onclick = () => copyText(link, "Link copied", $("#t-link"));
+
+    $("#p-refs").textContent = refs;
+    const r = D.rank[me.code];
+    const nextM = MILESTONES.find((m) => refs < m.n);
+    $("#pass-nudge").textContent =
+      refs === 0 ? "Start with one person: the batchmate who keeps asking you about placements. One message is all it takes."
+      : r && r <= 5 ? "You're in the prize zone. " + refs + " friends are building their first AI project because of you. Keep going until registrations close."
+      : nextM ? refs + (refs === 1 ? " friend is" : " friends are") + " coming because of you. " + (nextM.n - refs) + " more unlocks the " + nextM.title + "."
+      : refs + " friends are coming because of you. That is what leaders on campus look like.";
+    $("#p-rank").textContent = r ? "#" + r : "–";
+    $("#p-rank-cap").textContent = r ? "of " + D.leaders.length + " referrers" + (r <= 5 ? " · in the prize zone" : "") : "invite 1 friend to get ranked";
+    $("#p-clicks").textContent = state.clicks[me.code] || 0;
+
+    const next = MILESTONES.find((m) => refs < m.n);
+    $("#milestones").innerHTML = MILESTONES.map((m) => {
+      const done = refs >= m.n;
+      const status = done ? "Unlocked" : m === next ? (m.n - refs) + " more" : "Locked";
+      return '<li class="' + (done ? "done" : "") + '"><span class="ms-n">' + m.n + (m.n === 1 ? " friend" : " friends") +
+        '</span><span class="ms-t">' + esc(m.title) + "<small>" + esc(m.note) + '</small></span><span class="ms-s">' + status + "</span></li>";
+    }).join("");
+
+    const ci = D.colleges.findIndex((c) => c.name === me.college);
+    const c = D.colleges[ci];
+    $("#p-college").textContent = c
+      ? me.college + " is #" + (ci + 1) + " of " + D.colleges.length + " colleges with " + c.count + " students registered." +
+        (ci > 0 ? " " + (D.colleges[ci - 1].count - c.count + 1) + " more puts you ahead of " + D.colleges[ci - 1].name + "." : " Keep the lead.")
+      : "";
+
+    const friends = D.refList[me.code] || [];
+    $("#p-friends").innerHTML = friends.length
+      ? friends.map((f) => "<li>" + esc(shortName(f.name)) + "</li>").join("")
+      : '<li class="empty">No one yet. Share your link in your class WhatsApp group first; that is where most seats come from.</li>';
+  };
+
+  render.leaderboard = function () {
+    const me = myCode();
+    const people = D.leaders.slice(0, 10);
+    $("#b-people").innerHTML = people.length ? people.map((r, i) =>
+      '<li class="' + (r.code === me ? "me" : "") + '"><span class="pos">' + (i + 1) + '</span><span class="who"><b>' + esc(shortName(r.name)) +
+      (i < 5 ? '<span class="prize">₹200</span>' : "") + "</b><span>" + esc(r.college) + '</span></span><span class="score">' + D.refCount[r.code] + "</span></li>"
+    ).join("") : '<li><span class="pos"></span><span class="who"><span>No referrals yet. The first person to invite a friend takes #1.</span></span><span></span></li>';
+
+    const myCollege = me && D.byCode.get(me) ? D.byCode.get(me).college : null;
+    const top = D.colleges[0] ? D.colleges[0].count : 1;
+    $("#b-colleges").innerHTML = D.colleges.length ? D.colleges.slice(0, 10).map((c, i) =>
+      '<li class="' + (c.name === myCollege ? "me" : "") + '"><span class="pos">' + (i + 1) + '</span><span class="who"><b>' + esc(c.name) + "</b><span>" +
+      pct(c.viaRef, c.count) + '% joined through a friend</span><div class="cbar"><i style="width:' + pct(c.count, top) + '%"></i></div></span><span class="score">' + c.count + "</span></li>"
+    ).join("") : '<li><span class="pos"></span><span class="who"><span>No registrations yet.</span></span><span></span></li>';
+  };
+
+  render.organizer = function () {
+    const open = session.get("aiw-admin") === "1";
+    $("#gate").hidden = open;
+    $("#admin").hidden = !open;
+    if (!open) return;
+
+    const live = DB.live;
+    const chip = $("#mode-chip");
+    chip.className = "chip" + (live ? " live" : "");
+    chip.textContent = live ? "Live · Google Sheets" : state.demo ? "Demo · simulated 7-day campaign" : "Demo · this browser only";
+    $("#a-sim").hidden = live;
+    $("#a-reset").hidden = live;
+    const n = D.total;
+    $("#admin-sub").textContent = n
+      ? fmt(n) + " registrations from " + D.colleges.length + " colleges. Updated " + new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }) + "."
+      : "No registrations yet. Share the register page or load the simulated campaign.";
+
+    // KPIs
+    const referrers = D.leaders.length;
+    const k = n ? D.viaRef / n : 0;
+    const kpis = [
+      { l: "Registrations", v: fmt(n), s: "Target " + CONFIG.target + " · " + pct(n, CONFIG.target) + "%", meter: Math.min(100, pct(n, CONFIG.target)) },
+      { l: "Via referrals", v: pct(D.viaRef, n) + "%", s: fmt(D.viaRef) + " joined through a friend" },
+      { l: "Invites per person", v: k.toFixed(2), s: "Registrations each pass holder brought in" },
+      { l: "Active referrers", v: pct(referrers, n) + "%", s: fmt(referrers) + " brought at least 1 friend" },
+      { l: "Colleges reached", v: fmt(D.colleges.length), s: D.colleges[0] ? "Most: " + D.colleges[0].name : "None yet" },
+      { l: "Cost per signup", v: n ? "₹" + (2000 / n).toFixed(2) : "–", s: "₹2,000 total budget" },
+    ];
+    $("#kpis").innerHTML = kpis.map((x) =>
+      '<div class="kpi"><span class="k-l">' + x.l + '</span><span class="k-v">' + esc(x.v) + '</span><span class="k-s">' + esc(x.s) + "</span>" +
+      (x.meter != null ? '<div class="meter"><span style="width:' + x.meter + '%"></span></div>' : "") + "</div>"
+    ).join("");
+
+    drawDaily();
+
+    // Channels
+    const ch = Object.entries(D.channels).sort((a, b) => b[1] - a[1]);
+    const chMax = ch.length ? ch[0][1] : 1;
+    $("#c-channels").innerHTML = ch.length ? ch.map(([key, v]) =>
+      '<div class="hbar"><div class="hbar-top"><b>' + esc(CHANNELS[key]) + "</b><span>" + fmt(v) + " · " + pct(v, n) + '%</span></div><div class="track"><i style="width:' + pct(v, chMax) + '%"></i></div></div>'
+    ).join("") : '<p class="sub">Channel split appears after the first registration.</p>';
+
+    // Funnel
+    const holders = n;
+    $("#c-funnel").innerHTML =
+      "<div><span>Pass holders</span><b>" + fmt(holders) + "</b></div>" +
+      "<div><span>Invite links opened</span><b>" + fmt(D.totalClicks) + "</b></div>" +
+      "<div><span>Registered from a link</span><b>" + fmt(D.viaRef) + "</b></div>" +
+      '<div class="conv"><span>Link open → registration</span><b>' + pct(D.viaRef, D.totalClicks) + "%</b></div>";
+
+    // Budget
+    $("#c-budget").innerHTML =
+      "<tr><td>Top 5 referrers: ₹200 Amazon voucher each</td><td class='r'>₹1,000</td></tr>" +
+      "<tr><td>Top 20 campus ambassadors: ₹50 data recharge each</td><td class='r'>₹1,000</td></tr>" +
+      "<tr><td>Milestone rewards: templates, certificate, mentor review</td><td class='r'>₹0</td></tr>" +
+      "<tr><td>Tools: this page, Google Sheets, WhatsApp share links</td><td class='r'>₹0</td></tr>" +
+      "<tr class='total'><td>Total committed</td><td class='r'>₹2,000</td></tr>";
+
+    // Milestone unlocks
+    const unlocks = MILESTONES.map((m) => ({ m, c: Object.values(D.refCount).filter((v) => v >= m.n).length }));
+    const uMax = Math.max(1, ...unlocks.map((u) => u.c));
+    $("#c-milestones").innerHTML = unlocks.map((u) =>
+      '<div class="hbar"><div class="hbar-top"><b>' + u.m.n + "+ · " + esc(u.m.title) + "</b><span>" + fmt(u.c) + '</span></div><div class="track"><i style="width:' + pct(u.c, uMax) + '%"></i></div></div>'
+    ).join("");
+
+    // Colleges table
+    $("#t-colleges").innerHTML = "<thead><tr><th>#</th><th>College</th><th class='r'>Registrations</th><th class='r'>Via referral</th><th>Top referrer</th></tr></thead><tbody>" +
+      (D.colleges.slice(0, 10).map((c, i) =>
+        "<tr><td>" + (i + 1) + "</td><td>" + esc(c.name) + "</td><td class='r'>" + c.count + "</td><td class='r'>" + pct(c.viaRef, c.count) + "%</td><td>" +
+        (c.top ? esc(shortName(c.top.name)) + " (" + D.refCount[c.top.code] + ")" : "–") + "</td></tr>"
+      ).join("") || "<tr><td colspan='5'>No registrations yet.</td></tr>") + "</tbody>";
+
+    // Recent
+    const recent = D.sorted.slice(-12).reverse();
+    $("#t-recent").innerHTML = "<thead><tr><th>When</th><th>Name</th><th>College</th><th>Channel</th><th>Invited by</th></tr></thead><tbody>" +
+      (recent.map((r) => {
+        const by = r.referredBy && D.byCode.get(r.referredBy);
+        return "<tr><td>" + timeAgo(r.createdAt) + "</td><td>" + esc(shortName(r.name)) + "</td><td>" + esc(r.college) + "</td><td><span class='src " + esc(r.source) + "'>" +
+          esc(CHANNELS[r.source] || "Other") + "</span></td><td>" + (by ? esc(shortName(by.name)) : "–") + "</td></tr>";
+      }).join("") || "<tr><td colspan='5'>No registrations yet.</td></tr>") + "</tbody>";
+  };
+
+  // ---------- daily chart (stacked: referral on the baseline, others above) ----------
+  function drawDaily() {
+    const box = $("#c-daily");
+    const W = 680, H = 250, L = 38, R = 8, T = 14, B = 30;
+    const pace = Math.ceil(CONFIG.target / CONFIG.days);
+    const peak = Math.max(pace, ...D.days.map((d) => d.ref + d.other));
+    const step = peak > 150 ? 50 : peak > 60 ? 25 : 10;
+    const max = Math.ceil((peak * 1.08) / step) * step;
+    const y = (v) => T + (H - T - B) * (1 - v / max);
+    const slot = (W - L - R) / D.days.length;
+    const bw = Math.min(56, slot * 0.58);
+    const roundTop = (x, y0, w, h, r) => {
+      if (h <= 0) return "";
+      r = Math.min(r, h, w / 2);
+      return "M" + x + "," + (y0 + h) + "V" + (y0 + r) + "Q" + x + "," + y0 + " " + (x + r) + "," + y0 + "H" + (x + w - r) + "Q" + (x + w) + "," + y0 + " " + (x + w) + "," + (y0 + r) + "V" + (y0 + h) + "Z";
+    };
+    let g = "";
+    for (let v = 0; v <= max; v += step) {
+      g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(v) + '" y2="' + y(v) + '" stroke="var(--line)" stroke-width="1"/>';
+      g += '<text x="' + (L - 8) + '" y="' + (y(v) + 4) + '" text-anchor="end" font-size="11" fill="var(--muted)">' + v + "</text>";
+    }
+    let bars = "", hits = "";
+    let cum = 0;
+    const lastIdx = D.days.length - 1;
+    const maxIdx = D.days.reduce((bi, d, i, a) => (d.ref + d.other > a[bi].ref + a[bi].other ? i : bi), 0);
+    D.days.forEach((d, i) => {
+      const x = L + slot * i + (slot - bw) / 2;
+      const tot = d.ref + d.other;
+      cum += tot;
+      const yRef = y(d.ref), yTot = y(tot);
+      const base = y(0);
+      // referral segment sits on the baseline; "other" stacks above with a 2px surface gap
+      if (d.other > 0) {
+        bars += '<path d="' + roundTop(x, yTot, bw, Math.max(0, yRef - yTot - 2), 4) + '" fill="var(--accent-2)"/>';
+        if (d.ref > 0) bars += '<rect x="' + x + '" y="' + yRef + '" width="' + bw + '" height="' + (base - yRef) + '" fill="var(--accent)"/>';
+      } else if (d.ref > 0) {
+        bars += '<path d="' + roundTop(x, yRef, bw, base - yRef, 4) + '" fill="var(--accent)"/>';
+      }
+      if ((i === lastIdx || i === maxIdx) && tot > 0) {
+        bars += '<text x="' + (x + bw / 2) + '" y="' + (yTot - 6) + '" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">' + tot + "</text>";
+      }
+      const label = new Date(d.t).toLocaleDateString("en-IN", { weekday: "short", day: "numeric" });
+      bars += '<text x="' + (x + bw / 2) + '" y="' + (H - 10) + '" text-anchor="middle" font-size="11" fill="var(--muted)">Day ' + (i + 1) + " · " + label + "</text>";
+      hits += '<rect class="hit" data-i="' + i + '" data-cum="' + cum + '" x="' + (L + slot * i) + '" y="' + T + '" width="' + slot + '" height="' + (H - T - B) + '" fill="transparent" tabindex="0"/>';
+    });
+    const paceLine = '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(pace) + '" y2="' + y(pace) + '" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4" opacity=".55"/>' +
+      '<text x="' + (L + 6) + '" y="' + (y(pace) - 6) + '" text-anchor="start" font-size="11" font-weight="600" fill="var(--muted)">' + pace + "/day pace</text>";
+    box.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Registrations per day for the last 7 days">' + g + bars + paceLine + hits + '</svg><div class="tip" hidden></div>';
+
+    const tip = box.querySelector(".tip");
+    const svg = box.querySelector("svg");
+    const showTip = (el) => {
+      const d = D.days[+el.dataset.i];
+      const tot = d.ref + d.other;
+      tip.innerHTML = "<b>" + new Date(d.t).toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "short" }) + "</b><br>" +
+        tot + " registrations · " + d.ref + " via referral<br>Running total: " + el.dataset.cum;
+      const r = svg.getBoundingClientRect(), br = box.getBoundingClientRect();
+      const scale = r.width / W;
+      const cx = (+el.getAttribute("x") + slot / 2) * scale;
+      const top = y(tot) * scale;
+      tip.style.left = Math.min(Math.max(cx, 90), br.width - 90) + "px";
+      tip.style.top = top + "px";
+      tip.hidden = false;
+    };
+    box.querySelectorAll(".hit").forEach((el) => {
+      el.addEventListener("mouseenter", () => showTip(el));
+      el.addEventListener("focus", () => showTip(el));
+      el.addEventListener("mouseleave", () => { tip.hidden = true; });
+      el.addEventListener("blur", () => { tip.hidden = true; });
+    });
+  }
+
+  // ---------- forms ----------
+  function fieldError(id, msg) {
+    $("#e-" + id).textContent = msg || "";
+    const input = $("#f-" + id);
+    if (input) input.setAttribute("aria-invalid", msg ? "true" : "false");
+  }
+
+  const EMAIL_FIX = { "gmial.com": "gmail.com", "gamil.com": "gmail.com", "gmai.com": "gmail.com", "gmail.co": "gmail.com", "gmail.con": "gmail.com", "gmail.cm": "gmail.com", "gnail.com": "gmail.com", "yahoo.co": "yahoo.com", "yaho.com": "yahoo.com", "outlok.com": "outlook.com", "hotmial.com": "hotmail.com" };
+
+  // each rule returns an error message, or "" when the value is fine
+  const RULES = {
+    name(v) {
+      v = v.trim().replace(/\s+/g, " ");
+      if (!v) return "Enter your full name.";
+      if (!/^[\p{L}\p{M} .'-]+$/u.test(v)) return "Use letters only. No numbers or symbols.";
+      if (v.replace(/[^\p{L}]/gu, "").length < 2) return "Name looks too short.";
+      return "";
+    },
+    phone(v) {
+      const raw = v.replace(/[\s()-]/g, "");
+      if (!raw) return "Enter your WhatsApp number.";
+      if (!/^\+?\d+$/.test(raw)) return "Use digits only, like 98765 43210.";
+      const p = cleanPhone(v);
+      if (p.length !== 10) return "Enter a 10-digit mobile number (you typed " + p.length + " digits).";
+      if (!/^[6-9]/.test(p)) return "Indian mobile numbers start with 6, 7, 8 or 9.";
+      if (/^(\d)\1{9}$/.test(p) || p === "9876543210") return "That looks like a sample number. Enter your real WhatsApp number.";
+      return "";
+    },
+    email(v) {
+      v = v.trim().toLowerCase();
+      if (!v) return "Enter your email.";
+      if (/\s/.test(v)) return "Email can't contain spaces.";
+      if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/.test(v) || /\.\./.test(v)) return "Enter a valid email, like you@gmail.com.";
+      return "";
+    },
+    college(v) {
+      v = v.trim();
+      if (!v) return "Enter your college name.";
+      if (v.replace(/[^\p{L}]/gu, "").length < 3) return "Enter your college's name, not just a code or number.";
+      return "";
+    },
+  };
+  const FIELDS = Object.keys(RULES);
+  const touched = new Set();
+
+  function emailHint() {
+    const v = $("#f-email").value.trim().toLowerCase();
+    const at = v.lastIndexOf("@");
+    const fix = at > 0 && EMAIL_FIX[v.slice(at + 1)];
+    const h = $("#h-email");
+    h.textContent = "";
+    if (!fix) return;
+    const sug = v.slice(0, at + 1) + fix;
+    h.append("Did you mean ");
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = sug;
+    b.addEventListener("click", () => { $("#f-email").value = sug; h.textContent = ""; validateField("email"); });
+    h.append(b, "?");
+  }
+
+  function validateField(id) {
+    const msg = RULES[id]($("#f-" + id).value);
+    fieldError(id, msg);
+    if (id === "email") emailHint();
+    return !msg;
+  }
+
+  FIELDS.forEach((id) => {
+    const el = $("#f-" + id);
+    // check when the student leaves a field, then re-check on every keystroke so the error clears as soon as it's fixed
+    el.addEventListener("blur", () => { if (el.value.trim()) touched.add(id); if (touched.has(id)) validateField(id); });
+    el.addEventListener("input", () => {
+      if (touched.has(id)) validateField(id);
+      $("#form-alert").textContent = "";
+    });
+  });
+
+  $("#reg-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const alertBox = $("#form-alert");
+    const btn = $("#reg-btn");
+    if (btn.disabled) return;
+    FIELDS.forEach((id) => touched.add(id));
+    const bad = FIELDS.filter((id) => !validateField(id));
+    if (bad.length) {
+      alertBox.textContent = bad.length === 1 ? "Fix the highlighted field to continue." : "Fix the " + bad.length + " highlighted fields to continue.";
+      const first = $("#f-" + bad[0]);
+      first.focus({ preventScroll: true });
+      first.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+      return;
+    }
+    alertBox.textContent = "";
+
+    const f = {
+      name: $("#f-name").value.trim().replace(/\s+/g, " "),
+      phone: cleanPhone($("#f-phone").value),
+      email: $("#f-email").value.trim().toLowerCase(),
+      college: $("#f-college").value.trim().replace(/\s+/g, " "),
+      branch: $("#f-branch").value,
+      year: $("#f-year").value,
+      // the store decides "referral" only when the code is real, so a bad link falls back to this channel
+      source: $("#f-source").value,
+      referredBy: session.get("aiw-ref") || null,
+    };
+
+    btn.disabled = true;
+    btn.textContent = "Saving your seat…";
+    try {
+      const res = await DB.register(f);
+      if (res && res.error === "conflict") {
+        fieldError("phone", "This number is registered to someone else.");
+        fieldError("email", "This email is registered to someone else.");
+        alertBox.textContent = "This number and this email belong to two different registrations. Check both, or use Find my pass.";
+        return;
+      }
+      if (!res || !res.reg) throw new Error("No pass returned");
+      local.set("aiw-my-code", res.reg.code);
+      session.del("aiw-ref");
+      await load();
+      $("#reg-form").reset();
+      touched.clear();
+      FIELDS.forEach((id) => fieldError(id, ""));
+      location.hash = "pass";
+      if (res.duplicate) {
+        toast("This " + (res.match === "email" ? "email" : "number") + " is already registered, so no new seat was taken. Here is your existing pass.");
+      } else {
+        toast("Seat confirmed. Here is your pass.");
+        celebrate();
+      }
+    } catch (err) {
+      alertBox.textContent = "Could not save your registration. Check your internet connection and try again.";
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Get my workshop pass";
+    }
+  });
+
+  $("#find-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const q = $("#find-q").value.trim();
+    if (!q) { $("#e-find").textContent = "Enter your WhatsApp number or email."; return; }
+    const r = await DB.lookup(q).catch(() => null);
+    if (!r) { $("#e-find").textContent = "No pass found for that number or email. Check it, or register first."; return; }
+    $("#e-find").textContent = "";
+    local.set("aiw-my-code", r.code);
+    render.pass();
+  });
+
+  $("#not-me").addEventListener("click", () => { local.del("aiw-my-code"); $("#find-q").value = ""; render.pass(); });
+
+  $("#gate-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    if ($("#gate-pin").value.trim() === CONFIG.adminPin) {
+      session.set("aiw-admin", "1");
+      $("#e-gate").textContent = "";
+      render.organizer();
+    } else {
+      $("#e-gate").textContent = "That PIN is not right.";
+    }
+  });
+
+  $("#a-refresh").addEventListener("click", async () => { await load(); render.organizer(); toast("Dashboard updated"); });
+  $("#a-sim").addEventListener("click", async () => { await DB.seed(); await load(); render.organizer(); toast("Loaded a simulated 7-day campaign"); });
+  $("#a-reset").addEventListener("click", async (e) => {
+    const b = e.currentTarget;
+    if (!b.dataset.armed) {
+      b.dataset.armed = "1";
+      b.textContent = "Click again to erase everything";
+      setTimeout(() => { delete b.dataset.armed; b.textContent = "Erase all data"; }, 4000);
+      return;
+    }
+    delete b.dataset.armed;
+    b.textContent = "Erase all data";
+    await DB.reset();
+    local.del("aiw-my-code");
+    await load();
+    render.organizer();
+    toast("All registrations erased");
+  });
+  $("#a-export").addEventListener("click", async () => {
+    const rows = await DB.exportRows();
+    const cols = ["createdAt", "name", "phone", "email", "college", "branch", "year", "code", "referredBy", "source"];
+    const cell = (v) => {
+      let s = String(v == null ? "" : v);
+      if (/^[=+\-@]/.test(s)) s = "'" + s;
+      return '"' + s.replace(/"/g, '""') + '"';
+    };
+    const csv = [cols.join(",")].concat(rows.map((r) => cols.map((c) => cell(r[c])).join(","))).join("\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    a.download = "workshop-registrations.csv";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  });
+
+  // ---------- quote band ----------
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let qi = 0, qTimer = null;
+  function showQuote(i, animate) {
+    qi = (i + QUOTES.length) % QUOTES.length;
+    const body = $("#quote-band .q-body");
+    const apply = () => {
+      $("#q-text").textContent = QUOTES[qi].text;
+      $("#q-cite").textContent = "— " + QUOTES[qi].cite;
+      document.querySelectorAll("#q-dots button").forEach((b, k) => b.setAttribute("aria-selected", k === qi ? "true" : "false"));
+      body.classList.remove("fading");
+    };
+    if (animate && !reduceMotion) { body.classList.add("fading"); setTimeout(apply, 350); } else apply();
+  }
+  function startQuotes() {
+    clearInterval(qTimer);
+    if (!reduceMotion) qTimer = setInterval(() => { if (!document.hidden) showQuote(qi + 1, true); }, 7000);
+  }
+  $("#q-dots").innerHTML = QUOTES.map((_, k) => '<button type="button" role="tab" aria-label="Quote ' + (k + 1) + '"></button>').join("");
+  document.querySelectorAll("#q-dots button").forEach((b, k) => b.addEventListener("click", () => { showQuote(k, true); startQuotes(); }));
+  $("#quote-band").addEventListener("mouseenter", () => clearInterval(qTimer));
+  $("#quote-band").addEventListener("mouseleave", startQuotes);
+  showQuote(Math.floor(Math.random() * QUOTES.length), false);
+  startQuotes();
+
+  // ---------- celebration on a new registration ----------
+  function celebrate() {
+    if (reduceMotion) return;
+    const cv = $("#confetti"), ctx = cv.getContext("2d");
+    const dpr = window.devicePixelRatio || 1;
+    cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
+    ctx.scale(dpr, dpr);
+    const css = getComputedStyle(document.documentElement);
+    const colors = ["--accent", "--primary", "--accent-2", "--ticket-code", "--gold"].map((v) => css.getPropertyValue(v).trim());
+    const bits = Array.from({ length: 140 }, () => ({
+      x: innerWidth / 2 + (Math.random() - 0.5) * 160, y: innerHeight * 0.35,
+      vx: (Math.random() - 0.5) * 14, vy: -6 - Math.random() * 9,
+      w: 6 + Math.random() * 6, h: 4 + Math.random() * 4, a: Math.random() * 6, va: (Math.random() - 0.5) * 0.4,
+      c: colors[Math.floor(Math.random() * colors.length)],
+    }));
+    const t0 = performance.now();
+    (function frame(t) {
+      const life = (t - t0) / 1800;
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      if (life >= 1) return;
+      ctx.globalAlpha = 1 - life * life;
+      bits.forEach((b) => {
+        b.vy += 0.35; b.vx *= 0.99; b.x += b.vx; b.y += b.vy; b.a += b.va;
+        ctx.save(); ctx.translate(b.x, b.y); ctx.rotate(b.a); ctx.fillStyle = b.c; ctx.fillRect(-b.w / 2, -b.h / 2, b.w, b.h); ctx.restore();
+      });
+      requestAnimationFrame(frame);
+    })(t0);
+  }
+
+  // ---------- boot ----------
+  $("#college-list").innerHTML = COLLEGES.map((c) => '<option value="' + esc(c) + '"></option>').join("");
+  $("#foot-mode").textContent = DB.live ? "Live mode: registrations save to Google Sheets." : "Demo mode: data is simulated and stays in this browser.";
+
+  window.addEventListener("hashchange", show);
+  window.addEventListener("storage", async (e) => { if (e.key === LocalStore.key && !DB.live) { LocalStore.mem = null; await load(); show(); } });
+
+  (async function boot() {
+    readInvite();
+    await load();
+    await trackInviteClick();
+    show();
+    if (DB.live) setInterval(async () => { if (!document.hidden) { await load(); show(); } }, 30000);
+  })();
+})();
+</script>
+</body>
+</html>
